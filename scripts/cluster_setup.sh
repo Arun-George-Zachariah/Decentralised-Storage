@@ -55,3 +55,13 @@ done
 master_node=$(head -1 "$HOSTS")
 echo "Starting IPFS Cluster Service Daemon on $master_node"
 ssh -i $PRIVATE_KEY $USER_NAME@$master_node ". ~/.profile && ipfs-cluster-service daemon > ~/logs/ipfs_cluster_service_daemon.log 2>&1" &
+
+# Getting the master data.
+master_ip=$(ssh -i $PRIVATE_KEY $USER_NAME@$master_node "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -v '10.10.1.*'")
+master_id=$(ssh -i $PRIVATE_KEY $USER_NAME@$master_node ". ~/.profile && ipfs-cluster-ctl id | head -n 1 | cut -d'|' -f1 | xargs")
+
+# Adding additional peers to the network.
+for peer in $(tail -n +2 $HOSTS); do
+    echo "Starting IPFS Cluster Service Daemon on $peer"
+    ssh -i $PRIVATE_KEY $USER_NAME@$peer ". ~/.profile && ipfs-cluster-service daemon --bootstrap /ip4/$master_ip/tcp/9096/ipfs/$master_id > ~/logs/ipfs_cluster_service_daemon.log 2>&1 " &
+done

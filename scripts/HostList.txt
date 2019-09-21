@@ -1,1 +1,4 @@
-ms1144.utah.cloudlab.us
+<HOST_1>
+<HOST_2>
+<HOST_3>
+<HOST_4>
