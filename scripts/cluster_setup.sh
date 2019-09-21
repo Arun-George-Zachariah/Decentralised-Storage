@@ -65,3 +65,8 @@ for peer in $(tail -n +2 $HOSTS); do
     echo "Starting IPFS Cluster Service Daemon on $peer"
     ssh -i $PRIVATE_KEY $USER_NAME@$peer ". ~/.profile && ipfs-cluster-service daemon --bootstrap /ip4/$master_ip/tcp/9096/ipfs/$master_id > ~/logs/ipfs_cluster_service_daemon.log 2>&1 " &
 done
+
+# Preparing the FUSE mountpoint.
+ssh -i $PRIVATE_KEY $USER_NAME@$master_node "sudo apt install npm && sudo npm install -g ipfs-fuse"
+ssh -i $PRIVATE_KEY $USER_NAME@$master_node "ipfs-fuse" & # Mounted on /users/<USER>/IPFS
+
