@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# Setting defaults.
+USER_NAME=$USER
+PRIVATE_KEY=~/.ssh/id_rsa
+HOSTS=HostList.txt
+
+# Usage.
+usage()
+{
+    echo "usage: cluster_setup.sh [--user User] [--key Private_Key] [--hosts Host_List] [-h | --help] "
+}
+
+# Read input parameters.
+if [ "$1" == "" ]; then usage; exit 1; fi
+while [ "$1" != "" ]; do
+    case $1 in
+    	--user)
+        	shift
+        	USER_NAME=$1
+        	;;
+        --key)
+        	shift
+        	PRIVATE_KEY=$1
+        	;;
+        --hosts)
+        	shift
+        	HOSTS=$1
+        	;;
+        -h | --help )
+        	usage
+        	exit
+        	;;
+        * )
+        	usage
+            exit
+    esac
+    shift
+done
+
+# Creating the cluster secret key
+CLUSTER_SECRET=$(od  -vN 32 -An -tx1 /dev/urandom | tr -d ' \n')
+# Set up IPFS on all nodes.
+for node in $(cat $HOSTS)
+do
+    # Copying node setup script to the node.
+    scp -i $PRIVATE_KEY node_setup.sh $USER_NAME@$node:
+
+    # Setting up the node.
+    echo "Setting up $node"
+    ssh -i $PRIVATE_KEY $USER_NAME@$node "bash node_setup.sh $CLUSTER_SECRET"
+done
+
+# Starting IPFS Cluster Service daemon on the master node/ first peer.
+master_node=$(head -1 "$HOSTS")
+echo "Starting IPFS Cluster Service Daemon on $master_node"
+ssh -i $PRIVATE_KEY $USER_NAME@$master_node ". ~/.profile && ipfs-cluster-service daemon > ~/logs/ipfs_cluster_service_daemon.log 2>&1" &
