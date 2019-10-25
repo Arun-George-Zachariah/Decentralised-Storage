@@ -43,6 +43,7 @@ scp -i $PRIVATE_KEY ../WebApp/templates/* $USER_NAME@$HOST:WebApp/templates
 
 # Enabling the webapp port
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo firewall-cmd --zone=public --add-port=5000/tcp --permanent"
+ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo systemctl reload firewalld"
 
 # Starting up the server.
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "nohup python3 WebApp/upload.py" &

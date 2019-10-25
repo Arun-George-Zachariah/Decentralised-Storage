@@ -21,8 +21,14 @@ def upload():
             # Temporarily saving the file to the Host OS.
             file.save(os.path.join(os.environ['HOME'], file.filename))
 
-            # Copying the file to IPFS
-            subprocess.call(shlex.split("cp " + os.path.join(os.environ['HOME'], file.filename) + " " + os.path.join(os.environ['HOME'] + "/IPFS/", file.filename)))
+            # Copying the file to IPFS (Using the FUSE mount)
+            #subprocess.call(shlex.split("cp " + os.path.join(os.environ['HOME'], file.filename) + " " + os.path.join(os.environ['HOME'] + "/IPFS/", file.filename)))
+
+            # Copying the file to IPFS (using a traditional technique)
+            ret_str = subprocess.check_output(shlex.split("ipfs add " + os.path.join(os.environ['HOME'], file.filename)))
+            hash = str(ret_str).split(" ")[1]
+
+            # To-Do: Store the hash to Ethereum.
 
             # Removing the file from the Host OS
             subprocess.call(shlex.split("rm -rvf " + os.path.join(os.environ['HOME'], file.filename)))
