@@ -37,9 +37,10 @@ done
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo apt-get install -y python3-pip && pip3 install Flask"
 
 # Transfering all web files.
-ssh -i $PRIVATE_KEY $USER_NAME@$HOST "mkdir WebApp && mkdir WebApp/templates"
+ssh -i $PRIVATE_KEY $USER_NAME@$HOST "mkdir WebApp && mkdir WebApp/templates && mkdir WebApp/static"
 scp -i $PRIVATE_KEY ../WebApp/upload.py $USER_NAME@$HOST:WebApp
 scp -i $PRIVATE_KEY ../WebApp/templates/* $USER_NAME@$HOST:WebApp/templates
+scp -i $PRIVATE_KEY ../WebApp/static/* $USER_NAME@$HOST:WebApp/static
 
 # Enabling the webapp port
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo firewall-cmd --zone=public --add-port=5000/tcp --permanent"
