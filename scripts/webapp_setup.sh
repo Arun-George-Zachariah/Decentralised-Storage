@@ -38,7 +38,7 @@ ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo apt-get install -y python3-pip && pip
 
 # Transfering all web files.
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "mkdir WebApp && mkdir WebApp/templates && mkdir WebApp/static"
-scp -i $PRIVATE_KEY ../WebApp/upload.py $USER_NAME@$HOST:WebApp
+scp -i $PRIVATE_KEY ../WebApp/server.py $USER_NAME@$HOST:WebApp
 scp -i $PRIVATE_KEY ../WebApp/templates/* $USER_NAME@$HOST:WebApp/templates
 scp -i $PRIVATE_KEY ../WebApp/static/* $USER_NAME@$HOST:WebApp/static
 

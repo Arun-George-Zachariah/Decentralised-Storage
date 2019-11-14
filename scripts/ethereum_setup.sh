@@ -55,4 +55,5 @@ scp -i $PRIVATE_KEY ../config/genesis.json $USER_NAME@$HOST:Private-Share
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "cd Private-Share && geth --datadir BlockChain init genesis.json"
 
 # Starting the Blockchain.
-ssh -i $PRIVATE_KEY $USER_NAME@$HOST 'cd Private-Share && nohup geth --port 3000 --networkid 58343 --nodiscover --datadir=./BlockChain --maxpeers=0  --rpc --rpcport 8543 --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,net,web3,personal,miner" --allow-insecure-unlock' &
+#ssh -i $PRIVATE_KEY $USER_NAME@$HOST 'cd Private-Share && nohup geth --port 3000 --networkid 58343 --nodiscover --datadir=./BlockChain --maxpeers=0  --rpc --rpcport 8543 --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,net,web3,admin,personal,miner" --allow-insecure-unlock' &
+ssh -i $PRIVATE_KEY $USER_NAME@$HOST 'cd Private-Share && nohup geth --datadir "BlockChain" --networkid 123456 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcapi="admin,db,eth,net,web3,personal" --allow-insecure-unlock' &

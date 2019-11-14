@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Private-Share</title>
@@ -6,6 +7,7 @@
         <script type="text/javascript" src="{{ url_for('static', filename='addHash.js') }}"></script>
     </head>
     <body>
+        <a href="/account">Click here to create an account</a>
         <form action="/upload" method="post" enctype="multipart/form-data">
             Choose the file: <input type="file" name="file"/><BR>
             <input type="submit" value="Upload"/>
