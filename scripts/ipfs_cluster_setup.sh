@@ -8,7 +8,7 @@ HOSTS=HostList.txt
 # Usage.
 usage()
 {
-    echo "usage: cluster_setup.sh [--user User] [--key Private_Key] [--hosts Host_List] [-h | --help] "
+    echo "usage: ipfs_cluster_setup.sh [--user User] [--key Private_Key] [--hosts Host_List] [-h | --help] "
 }
 
 # Read input parameters.
