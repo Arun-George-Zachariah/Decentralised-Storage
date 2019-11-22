@@ -4,14 +4,16 @@ import re
 import subprocess
 import shlex
 from flask import Flask, request, render_template, url_for, redirect
+import json
+
 
 # Initializing the application
 app = Flask(__name__)
 
-@app.route("/")
-def display_home():
-    # Rendering the home page.
-    return render_template('index.html')
+# @app.route("/")
+# def display_home():
+#     # Rendering the home page.
+#     return render_template('index.html')
 
 @app.route("/account")
 def display_account():
@@ -54,6 +56,13 @@ def create_account():
         miner.start()
     # Returning back
     return redirect(url_for('display_account'))
+
+@app.route("/createKey")
+def display_home():
+    public_key = subprocess.check_output(shlex.split("node ../NodeFiles/crypto.js")).decode('utf-8')
+    print("server.py :: display_home :: public_key :: ", public_key)
+    # Rendering the home page.
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(host= '0.0.0.0')
