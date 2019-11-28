@@ -7,8 +7,8 @@ $(document).ready(function(){
     console.log("Deploying the Contract");
 
     // Note: localhost needs to be changed with the IP.
-    var web3Host = 'http://128.110.154.248',
-        web3Port = '8543';
+    var web3Host = 'http://128.110.154.225',
+        web3Port = '8545';
 
     var web3 = new Web3();
     web3.setProvider(new web3.providers.HttpProvider(web3Host + ':' + web3Port));
@@ -18,7 +18,7 @@ $(document).ready(function(){
         console.log("Ethereum - connected to RPC server");
     }
 
-    var account = web3.eth.accounts[0];
+    var account = "0x127b1c2f3d18964e0b9123434b8b3e7d37037965";
     web3.eth.defaultAccount=web3.eth.accounts[0]
 
     var abi = [{"constant":false,"inputs":[{"name":"x","type":"string"}],"name":"set","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -33,7 +33,7 @@ $(document).ready(function(){
 
     var sendDataObject = {
         from: account,
-        gas: 300000,
+        gas: 300000
     };
 
     var storageContractObject = web3.eth.contract(abi);

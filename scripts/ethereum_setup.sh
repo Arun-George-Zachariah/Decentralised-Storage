@@ -43,7 +43,7 @@ ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo apt-get update && \
 # NodeJS Installation.
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo apt-get install -y curl && \
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - && \
-sudo apt-get install nodejs"
+sudo apt-get install -y nodejs"
 
 # Project Setup.
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "mkdir Private-Share && mkdir Private-Share/BlockChain"
@@ -56,4 +56,4 @@ ssh -i $PRIVATE_KEY $USER_NAME@$HOST "cd Private-Share && geth --datadir BlockCh
 
 # Starting the Blockchain.
 #ssh -i $PRIVATE_KEY $USER_NAME@$HOST 'cd Private-Share && nohup geth --port 3000 --networkid 58343 --nodiscover --datadir=./BlockChain --maxpeers=0  --rpc --rpcport 8543 --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,net,web3,admin,personal,miner" --allow-insecure-unlock' &
-ssh -i $PRIVATE_KEY $USER_NAME@$HOST 'cd Private-Share && nohup geth --datadir "BlockChain" --networkid 123456 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcapi="admin,db,eth,net,web3,personal" --allow-insecure-unlock' &
+ssh -i $PRIVATE_KEY $USER_NAME@$HOST 'cd Private-Share && nohup geth --datadir "BlockChain" --networkid 123456 --rpc --rpcport "8545" --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi="admin,db,eth,net,web3,personal,miner" --allow-insecure-unlock' &>/dev/null &

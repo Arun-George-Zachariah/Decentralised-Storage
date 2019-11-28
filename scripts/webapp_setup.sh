@@ -37,17 +37,15 @@ done
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo apt-get update && sudo apt-get install -y python3-pip && pip3 install Flask"
 
 # Transfering all web files.
-ssh -i $PRIVATE_KEY $USER_NAME@$HOST "mkdir WebApp && mkdir WebApp/templates && mkdir WebApp/static"
-scp -i $PRIVATE_KEY ../WebApp/server.py $USER_NAME@$HOST:WebApp
-scp -i $PRIVATE_KEY ../WebApp/templates/* $USER_NAME@$HOST:WebApp/templates
-scp -i $PRIVATE_KEY ../WebApp/static/* $USER_NAME@$HOST:WebApp/static
+ssh -i $PRIVATE_KEY $USER_NAME@$HOST "mkdir WebApp && mkdir WebApp/templates && mkdir WebApp/static && mkdir WebApp/static/css"
+scp -r -i $PRIVATE_KEY ../WebApp/* $USER_NAME@$HOST:WebApp/
 
 # Transfering all node files.
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "mkdir NodeFiles"
 scp -i $PRIVATE_KEY ../NodeFiles/* $USER_NAME@$HOST:NodeFiles
 
 # Installing node modules.
-ssh -i $PRIVATE_KEY $USER_NAME@$HOST "cd NodeFiles && npm install eth-crypto"
+ssh -i $PRIVATE_KEY $USER_NAME@$HOST "cd NodeFiles && npm install eth-crypto && npm install eth-ecies"
 
 # Enabling the webapp port
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo firewall-cmd --zone=public --add-port=5000/tcp --permanent"

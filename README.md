@@ -2,7 +2,7 @@
 
 ## Setup
 ### IPFS Setup.
-    bash cluster_setup.sh --user <USER_NAME> --key <PPRIVATE_KEY> --hosts <HOST_LIST>
+    bash ipfs_cluster_setup.sh --user <USER_NAME> --key <PPRIVATE_KEY> --hosts <HOST_LIST>
    
 ### Ethereum Setup.  
      bash ethereum_setup.sh --user <USER_NAME> --key <PPRIVATE_KEY> --host <HOST>
