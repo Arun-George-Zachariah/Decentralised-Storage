@@ -1,22 +1,75 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Private-Share</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
-        <a href="/account">Click here to create an account</a>
-        <form action="/requestFile" method="post" enctype="multipart/form-data">
-            File Name: <input type="text" name="fileName"/><br>
-            Public Key: <input type="text" name="publicKey"/><br>
-            <a href = "{{ url_for('create_key') }}">Create Key</a><br>
-            {% if public_key %}
-                <p>{{ public_key }}</p>
-            {% endif %}
-            Creator Account: <input type="text" name="creatorAccount"/><br>
-            <input type="submit" value="Request"/>
-        </form>
-    </body>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Private-Share</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontAwesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="#" class="navbar-brand">Private-Share</a>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/upload">Upload</a></li>
+                        <li><a href="private-share.html">Download</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <section class="banner">
+        <div class="container">
+            <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="food-item">
+                        <h2>Upload Data</h2>
+                         <div class="text-content ">
+                            <form method="post" enctype="multipart/form-data" action="/requestFile">
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <table style="table-layout: fixed; width: 100%">
+                                            <tr>
+                                                <td>File Name: </td><td><input type="text"  name="fileName" multiple class="custom-file-input" id="customFile"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Public Key:</td><td><input type="text"  name="publicKey" multiple class="custom-file-input" id="publicKey"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href = "{{ url_for('create_key') }}">Create Key</a></td><td style="word-wrap: break-word">{% if public_key %}
+                                                    <p>{{ public_key }}</p>
+                                                {% endif %}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Creator Account: </td><td><input type="text"  name="creatorAccount" multiple class="custom-file-input" id="creatorAccountcustomFile"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info" name="Download" value="Download" id="Download" class="btn btn-block btn-dark"><i class="fa fa-fw fa-upload"></i>Download</button>
+                                </div>
+                            </form>
+                         </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </section>
+</body>
 </html>

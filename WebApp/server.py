@@ -13,6 +13,11 @@ from WebApp import util, constants
 # Initializing the application
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+    return render_template('home.html')
+
+
 @app.route("/upload", methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
