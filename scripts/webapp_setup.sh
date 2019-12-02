@@ -52,7 +52,7 @@ ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo firewall-cmd --zone=public --add-port
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo systemctl reload firewalld"
 
 # Starting up the server.
-ssh -i $PRIVATE_KEY $USER_NAME@$HOST "nohup python3 WebApp/upload.py" &
+ssh -i $PRIVATE_KEY $USER_NAME@$HOST "cd WebApp && nohup python3 server.py" &
 
 # To ensure that firewalld is loaded
 ssh -i $PRIVATE_KEY $USER_NAME@$HOST "sudo systemctl start firewalld"

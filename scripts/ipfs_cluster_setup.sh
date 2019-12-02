@@ -71,5 +71,5 @@ done
 ssh -i $PRIVATE_KEY $USER_NAME@$master_node "curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash - && sudo apt-get install -y nodejs && sudo apt install npm"
 
 # Setting up IPFS-FUSE
-ssh -i $PRIVATE_KEY $USER_NAME@$master_node "sudo apt-get install libfuse-dev && sudo npm install -g ipfs-fuse --unsafe-perm"
+ssh -i $PRIVATE_KEY $USER_NAME@$master_node "sudo apt-get install -y libfuse-dev && sudo npm install -g ipfs-fuse --unsafe-perm"
 ssh -i $PRIVATE_KEY $USER_NAME@$master_node "ipfs-fuse" & # Mounted on /users/<USER>/IPFS
