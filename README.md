@@ -10,6 +10,15 @@ The various data and privacy regulations introduced around the globe, require da
 
 ### Web App Deployment
     bash webapp_setup.sh --user <USER_NAME> --key <PPRIVATE_KEY> --host <HOST>
+    
+## Demo
+Video demonstration of the setup and functionality could be found at the below links.
+1. [Webapp Setup](https://www.youtube.com/watch?v=wYj7hKg-sDw)
+2. [Ethereum Network Setup](https://www.youtube.com/watch?v=BkF38oYGjN4&t=16s)
+3. [IFPS Network Setup](https://www.youtube.com/watch?v=5zvhEJMp_To)
+4. [To Create an Account](https://www.youtube.com/watch?v=pSXPiq8D6q4)
+5. [Upload a File](https://www.youtube.com/watch?v=m_Y0Eo2gxkM)
+6. [Download the File](https://www.youtube.com/watch?v=hs5MoG4WcnY)
 
 ## References
 [1] H. Jin, Y. Luo, P. Li, and J. Mathew, “A review of secure and privacy- preserving medical data sharing,” IEEE Access, vol. 7, pp. 61656– 61 669, 2019.
