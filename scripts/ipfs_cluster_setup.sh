@@ -66,10 +66,11 @@ for peer in $(tail -n +2 $HOSTS); do
     ssh -i $PRIVATE_KEY $USER_NAME@$peer ". ~/.profile && ipfs-cluster-service daemon --bootstrap /ip4/$master_ip/tcp/9096/ipfs/$master_id > ~/logs/ipfs_cluster_service_daemon.log 2>&1 " &
 done
 
-# Preparing the FUSE mountpoint.
+# Preparing the FUSE mountpoint - Start.
 # Node JS Installation.
 ssh -i $PRIVATE_KEY $USER_NAME@$master_node "curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash - && sudo apt-get install -y nodejs && sudo apt install npm"
 
 # Setting up IPFS-FUSE
 ssh -i $PRIVATE_KEY $USER_NAME@$master_node "sudo apt-get install -y libfuse-dev && sudo npm install -g ipfs-fuse --unsafe-perm"
 ssh -i $PRIVATE_KEY $USER_NAME@$master_node "ipfs-fuse" & # Mounted on /users/<USER>/IPFS
+# Preparing the FUSE mountpoint - End.
