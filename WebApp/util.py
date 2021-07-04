@@ -41,7 +41,7 @@ def init():
     query = "CREATE TABLE IF NOT EXISTS " + constants.TABLE_NAME + " (file_name TEXT, file_hash TEXT)"
     execute_query(query)
 
-    print("Created Table")
+    print("util.py :: init :: Created Table")
 
 
 
