@@ -1,6 +1,9 @@
 # Private-Share
 The various data and privacy regulations introduced around the globe, require data to be stored in a secure and privacy-preserving fashion. Non-compliance with these regulations come with major consequences. This has led to the formation of huge data silos within organizations leading to difficult data analysis along with an increased risk of a data breach. Isolating data also prevents collaborative research. To address this, we present Private-Share, a framework that would enable the secure sharing of large scale data. In order to achieve this goal, Private-Share leverages the recent advances in blockchain technology specifically the InterPlanetary File System and Ethereum.
 
+## Publications
+* Arun Zachariah and Maha Alrasheed - **Private-Share: A Secure and Privacy-Preserving De- Centralized Framework for Large Scale Data Sharing.** In Proc. of the 3rd ACM International Conference on  Multimedia in Asia (MM Asia 2021), 3 pages, Australia. (To Appear)
+
 ## Setup
 ### IPFS Setup.
     bash ipfs_cluster_setup.sh --user <USER_NAME> --key <PPRIVATE_KEY> --hosts <HOST_LIST>
